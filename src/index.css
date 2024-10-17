@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.rsw-editor{
+  width: 100%;
+  min-height: 5em;
+  margin: 1em 0;
+  text-align: left;
+}
