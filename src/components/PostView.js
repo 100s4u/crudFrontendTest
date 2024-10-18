@@ -5,6 +5,7 @@ import styles from '../App.module.css'
 import { Button, Popconfirm, Spin } from 'antd';
 import { LoadingOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Comments from './Comments';
+import DOMPurify from 'dompurify';
 
 const PostView = ({me}) => {
   const { id } = useParams();
@@ -65,9 +66,9 @@ const PostView = ({me}) => {
           <Button><Link to="/">К постам</Link></Button>
         </div>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: post.text }} />
+      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text) }} />
       <Comments
-        me={me}
+        author={post.author}
         id={id}
         isChanged={isChanged}
         setIsChanged={setIsChanged}

@@ -4,6 +4,7 @@ import { getPosts, deletePost } from '../api';
 import { Button, List, Popconfirm, Spin } from 'antd';
 import { DeleteOutlined, EditOutlined, MessageOutlined, LoadingOutlined } from '@ant-design/icons';
 import styles from '../App.module.css'
+import DOMPurify from 'dompurify';
 
 const Posts = ({ isAuth, me }) => {
   const [posts, setPosts] = useState([]);
@@ -64,7 +65,7 @@ const Posts = ({ isAuth, me }) => {
               >
                   <List.Item.Meta
                   title={<Link to={`/view/${post.id}`}><h2>{post.name}</h2></Link>}
-                  description={<p><span dangerouslySetInnerHTML={{ __html: post.text.substring(0, 100)}}></span><span><MessageOutlined style={{margin: '0 1em'}} />{post.comments.length}</span></p>}
+                  description={<p><span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text.substring(0, 100))}}></span><span><MessageOutlined style={{margin: '0 1em'}} />{post.comments.length}</span></p>}
                   />
                   
               </List.Item>
